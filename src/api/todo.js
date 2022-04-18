@@ -1,7 +1,5 @@
-const postUrl = 'http://localhost:4000/todos';
-
 export const fetchTasks = async () => {
-  const todos = await fetch(postUrl)
+  const todos = await fetch(process.env.REACT_APP_API_URL)
     .then((res) => {
       return res.json();
     })
@@ -13,7 +11,7 @@ export const fetchTasks = async () => {
 };
 
 export const fetchTask = async (id) => {
-  const todos = await fetch(postUrl + '/' + id)
+  const todos = await fetch(process.env.REACT_APP_API_URL + "/" + id)
     .then((res) => {
       return res.json();
     })
@@ -27,12 +25,12 @@ export const fetchTask = async (id) => {
 
 export const postTask = async (title, body) => {
   const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title, body }),
   };
 
-  await fetch(postUrl, requestOptions)
+  await fetch(process.env.REACT_APP_API_URL, requestOptions)
     .then((res) => {
       return res;
     })
@@ -43,28 +41,28 @@ export const postTask = async (title, body) => {
 
 export const updateTask = async (id, title, body) => {
   const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id, title, body }),
   };
 
-  await fetch(postUrl, requestOptions)
+  await fetch(process.env.REACT_APP_API_URL, requestOptions)
     .then((res) => {
       return res;
     })
     .catch((err) => {
-      alert('We could not update the data. Please try again');
+      alert("We could not update the data. Please try again");
       return [];
     });
 };
 
 export const deleteTask = async (id) => {
   const requestOptions = {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
     // body: JSON.stringify({ id }),
   };
-  await fetch(postUrl + '/' + id, requestOptions)
+  await fetch(process.env.REACT_APP_API_URL + "/" + id, requestOptions)
     .then((res) => {
       return res;
     })
